@@ -32,10 +32,12 @@ public class ArvoreBinariaBusca {
     }
 
     public Node delete(Node raiz, int key){
+        //Arvore Vazia
         if (raiz == null) {
             return raiz;
         }
 
+        //Descendo pela árvore
         if (key < raiz.getValue()) {
             raiz.setLeft(delete(raiz.getLeft(), key));
         }
@@ -45,6 +47,7 @@ public class ArvoreBinariaBusca {
 
         else
         {
+            //Nó com 1 filho ou folha
             if (raiz.getLeft() == null) {
                 return raiz.getRight();
             }
@@ -52,6 +55,7 @@ public class ArvoreBinariaBusca {
                 return raiz.getLeft();
             }
 
+            //Nó com 2 filhos
             raiz.setValue(menorValor(raiz.getRight()));
 
             raiz.setRight(delete(raiz.getRight(), raiz.getValue()));
@@ -80,8 +84,12 @@ public class ArvoreBinariaBusca {
     {
         if(node == null) return;
 
-        System.out.println(node.getValue() + "  "  );
         printTree(node.getLeft());
+        System.out.print(node.getValue() + "  "  );
         printTree(node.getRight());
+    }
+
+    public int getRaiz() {
+        return this.raiz.getValue();
     }
 }
