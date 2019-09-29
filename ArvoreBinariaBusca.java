@@ -92,4 +92,40 @@ public class ArvoreBinariaBusca {
     public int getRaiz() {
         return this.raiz.getValue();
     }
+
+    public boolean isBalanced(Node node){
+        int lh, rh;
+
+        if (node == null)
+            return true;
+
+        lh = height(node.getLeft());
+        rh = height(node.getRight());
+
+        if(Math.abs(lh - rh) <= 1 && isBalanced(node.getLeft()) && isBalanced(node.getRight())){
+            return true;
+        }
+        else
+            return false;
+    }
+
+    private int height(Node node) {
+        if (node == null) {
+            return -1;
+        }
+
+        int lefth = height(node.getLeft());
+        int righth = height(node.getRight());
+
+        if (lefth > righth) {
+            return lefth + 1;
+        } else {
+            return righth + 1;
+        }
+    }
+
+    public boolean isBalanced(int value){
+        Node node = raiz.search(value);
+        return isBalanced(node);
+    }
 }

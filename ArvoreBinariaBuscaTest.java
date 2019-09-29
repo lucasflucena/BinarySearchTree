@@ -70,10 +70,10 @@ public class ArvoreBinariaBuscaTest{
 
         ArvoreBinariaBusca arvore = new ArvoreBinariaBusca();
         arvore.insert(new Node(30));
-        arvore.insert(21);
+        arvore.insert(19);
         arvore.insert(38);
         arvore.insert(18);
-        arvore.insert(19);
+        arvore.insert(21);
         arvore.insert(39);
         arvore.insert(37);
 
@@ -105,10 +105,10 @@ public class ArvoreBinariaBuscaTest{
 
         ArvoreBinariaBusca arvore = new ArvoreBinariaBusca();
         arvore.insert(new Node(30));
-        arvore.insert(21);
+        arvore.insert(19);
         arvore.insert(38);
         arvore.insert(18);
-        arvore.insert(19);
+        arvore.insert(21);
         arvore.insert(39);
         arvore.insert(37);
 
@@ -142,10 +142,10 @@ public class ArvoreBinariaBuscaTest{
 
         ArvoreBinariaBusca arvore = new ArvoreBinariaBusca();
         arvore.insert(new Node(30));
-        arvore.insert(21);
+        arvore.insert(19);
         arvore.insert(38);
         arvore.insert(18);
-        arvore.insert(19);
+        arvore.insert(21);
         arvore.insert(39);
         arvore.insert(37);
 
@@ -179,10 +179,10 @@ public class ArvoreBinariaBuscaTest{
 
         ArvoreBinariaBusca arvore = new ArvoreBinariaBusca();
         arvore.insert(new Node(30));
-        arvore.insert(21);
+        arvore.insert(19);
         arvore.insert(38);
         arvore.insert(18);
-        arvore.insert(19);
+        arvore.insert(21);
         arvore.insert(39);
         arvore.insert(37);
 
@@ -204,4 +204,44 @@ public class ArvoreBinariaBuscaTest{
         assertEquals(null, arvore.search(37).getRight());
     }
 
+    @Test
+    public void taBalanceado() {
+        //arrange
+        /* Arvore Binaria:
+
+              30
+           /       \
+          19        38
+         /  \      /  \
+        18   21   37   39   */
+
+        ArvoreBinariaBusca arvore = new ArvoreBinariaBusca();
+        arvore.insert(new Node(30));
+        arvore.insert(19);
+        arvore.insert(38);
+        arvore.insert(18);
+        arvore.insert(21);
+        arvore.insert(39);
+        arvore.insert(37);
+
+        //act
+        boolean b = arvore.isBalanced(30);
+        arvore.delete(38);
+        arvore.delete(39);
+        arvore.insert(20);
+         /* Arvore Binaria:
+
+              30
+           /       \
+          19        37
+         /  \
+        18   20
+               \
+                21       */
+        boolean a = arvore.isBalanced(30);
+
+        //assert
+        assertEquals(true, b);
+        assertEquals(false, a);
+    }
 }
